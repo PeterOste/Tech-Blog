@@ -46,7 +46,6 @@ router.put('/:id', (req, res) => {
       // ...
     } catch (error) {
       // Handle error
-      // ...
     }
 });
 
