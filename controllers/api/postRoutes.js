@@ -14,26 +14,32 @@ router.get('/', (req, res) => {
 });
 
 // GET /:id - Get a specific blog post by ID.
-router.get('/:id', (req, res) => {
-    try {
-      // Retrieve and send the specific blog post with the given ID
-      // ...
-    } catch (error) {
-      // Handle error
-      // ...
+router.get('/:id', async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id);
+    if (!postData) {
+      res.status(404).json({ message: 'No post found with this id' });
+      return;
     }
+    res.status(200).json(postData);
+  } catch (error) {
+  
+    res.status(500).json(error);
+  }
 });
 
 // POST /create - Create a new blog post.
 router.post('/create', withAuth, async (req, res) => {
     try {
-      // Create a new blog post using the data in req.body
-      // ...
-      // Send a success response
-      // ...
+      const newPost = await Post.create({
+        title: req.body.title,
+        content: req.body.content,
+        user_id: req.session.user_id,
+      });
+
+      res.status(201).json(newPost);
     } catch (error) {
-      // Handle error
-      // ...
+      res.status(500).json(err);
     }
 });
 
