@@ -3,13 +3,12 @@ const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // GET / - Get existing blog posts for the homepage.
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
-      // Retrieve and send existing blog posts
-      // ...
-    } catch (error) {
-      // Handle error
-      // ...
+      const postData = await Post.findAll();
+      res.status(200).json(postData);
+    } catch (err) {
+      res.status(500).json(err);
     }
 });
 
@@ -22,9 +21,8 @@ router.get('/:id', async (req, res) => {
       return;
     }
     res.status(200).json(postData);
-  } catch (error) {
-  
-    res.status(500).json(error);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
@@ -38,7 +36,7 @@ router.post('/create', withAuth, async (req, res) => {
       });
 
       res.status(201).json(newPost);
-    } catch (error) {
+    } catch (err) {
       res.status(500).json(err);
     }
 });
