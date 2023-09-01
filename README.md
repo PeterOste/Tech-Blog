@@ -1,6 +1,13 @@
 # Tech-Blog
 This project is a CMS-style blog site that allows users to create, view, update, and delete blog posts and comments. Users can sign up, log in, and manage their content through a user-friendly dashboard.
 
+## Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
+
 ## Features
 - User authentication and authorization system.
 - Homepage displaying existing blog posts.
