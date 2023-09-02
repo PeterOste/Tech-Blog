@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Blog</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div class="flex-column justify-space-around">
+    <header class="display-flex justify-space-between align-center p-2">
+      <h1>
+        <span role="img" aria-label="blog">📰</span>
+        <a href="/">Tech Blog</a>
+      </h1>
+      <nav>
+        <!-- Conditionally render profile, dashboard, or login links -->
+        {{#if logged_in}}
+        <a href="/dashboard">Dashboard</a> |
+        <a href="/logout">Logout</a>
+        {{else}}
+        <a href="/login">Login</a>
+        {{/if}}
+      </nav>
+    </header>
+    <main class="container container-fluid mt-5">
+      <!-- Render the dynamic content for blog posts -->
+      {{{ body }}}
+    </main>
+    <footer>
+      <p>&copy; 2023 Tech Blog</p>
+    </footer>
+  </div>
+
+  <script src="/js/logout.js"></script>
+</body>
+
+</html>
